@@ -6,11 +6,13 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 14:48:19 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/25 14:56:10 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+// ENLEVER LES DEBUG
 
 // objets à collecter = C
 // sortie = E
@@ -101,8 +103,10 @@ int validate_map(char *filename, t_map *map) {
         line = get_next_line(fd);
     }
     close (fd);
+    printf("Nombre de P : %d | Nombre de C : %d | Nombre de E : %d\n", P_counter, C_counter, E_counter); // DEBUG
     if (P_counter != 1 || E_counter != 1 || C_counter < 1)
         return (0);
     map->collectibles = C_counter;
+    
     return (1);
 }
