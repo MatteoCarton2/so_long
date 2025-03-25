@@ -6,15 +6,15 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 14:01:27 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/25 14:48:19 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// personnage = P
 // objets à collecter = C
-// sortie = P
+// sortie = E
+// position de départ perso = P
 // vide = 0
 // murs = 1
 
@@ -62,4 +62,47 @@ int read_map(char *filename, t_map *map) {
     return (1);
 }
 
+int validate_map(char *filename, t_map *map) {
+    int fd;
+    int P_counter;
+    int E_counter;
+    int C_counter;
+    char *line;
+    int i;
 
+    
+    P_counter = 0;
+    E_counter = 0;
+    C_counter = 0;
+    fd = open(filename, O_RDONLY);
+    if (fd == -1)
+        return (0);
+    line = get_next_line(fd);
+    while (line != NULL)
+    {
+        i = 0;
+        ft_printf("Ligne lue: %s", line); // DEBUG
+        while(line[i] != '\0')
+        {
+            if (line[i] == 'P')
+                P_counter++;
+            else if (line[i] == 'E')
+                E_counter++;
+            else if (line[i] == 'C')
+                C_counter++;
+            else if (line[i] != '0' && line[i] != '1' && line[i] != '\n')
+            {
+                free(line);
+                return (0);
+            }
+            i++;
+        }
+        free (line);
+        line = get_next_line(fd);
+    }
+    close (fd);
+    if (P_counter != 1 || E_counter != 1 || C_counter < 1)
+        return (0);
+    map->collectibles = C_counter;
+    return (1);
+}
