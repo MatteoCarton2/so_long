@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 15:22:51 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:46:59 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ int store_map(char *filename, t_map *map) {
     if (fd == -1)
         return (0);
     map->map = malloc(sizeof(char *) * map->height); // initialisation
-    if(!map->map)
+    map->map_copy = malloc(sizeof(char *) * map->height);
+    if(!map->map || !map->map_copy)
         return (0);
     i = 0;
     while (i < map->height)
@@ -129,9 +130,11 @@ int store_map(char *filename, t_map *map) {
         j = 0;
         line = get_next_line(fd);
         map->map[i] = malloc(sizeof(char) * map->width + 1); // +1 pour le \0
+        map->map_copy[i] = malloc(sizeof(char) * map->width + 1);
         while (line[j] != '\0')
         {
             map->map[i][j] = line[j];
+            map->map_copy[i][j] = line[j];
             j++;
         }
         free(line);

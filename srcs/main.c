@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:13:09 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 15:58:57 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:42:09 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,15 @@ int main(int argc, char **argv) {
         ft_printf("Error\nFailed to store map !\n");
         return (1);
     }
-    check_path(&map);
+    if (check_path(&map) == 0)
+    {
+        ft_printf("Error\nNo valid path found ❌\n");
+        return (1);
+    }
+    ft_printf("Chemin faissable 🏆\n");
+        
     ft_printf("Width: %d\n", map.width);
     ft_printf("Height: %d\n", map.height);
-    ft_printf("Valide ✅");
+    ft_printf("Carte Valide ✅");
     return (0);
 }
