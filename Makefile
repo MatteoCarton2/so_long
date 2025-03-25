@@ -6,24 +6,25 @@
 #    By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 10:52:39 by mcarton           #+#    #+#              #
-#    Updated: 2025/03/25 11:12:48 by mcarton          ###   ########.fr        #
+#    Updated: 2025/03/25 13:57:05 by mcarton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-MLXFLAGS = -framework OpenGL -framework AppKit -lmlx
 
-SRCS = srcs/main.c
+SRCS = srcs/main.c srcs/map.c
 OBJS = $(SRCS:.c=.o)
-
+LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLXFLAGS)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) -L./libft -lft -o $(NAME)
+
+$(LIBFT):
+	make -C libft
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I./includes -c $< -o $@
@@ -33,6 +34,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C libft
 
 re: fclean all
 
