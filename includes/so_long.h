@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 14:26:28 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/25 15:00:16 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,4 @@ typedef struct s_map
 int check_extension(char *filename);
 int read_map(char *filename, t_map *map);
 int validate_map(char *filename, t_map *map);
+int store_map(char *filename, t_map *map);

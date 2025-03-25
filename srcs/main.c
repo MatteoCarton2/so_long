@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:13:09 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 14:49:05 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/25 15:00:55 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ int main(int argc, char **argv) {
     if (validate_map(argv[1], &map) == 0)
     {
         ft_printf("Error\nNot a valide map ❌\n");
+        return (1);
+    }
+    if (store_map(argv[1], &map) == 0)
+    {
+        ft_printf("Error\nFailed to store map !\n");
         return (1);
     }
     ft_printf("Width: %d\n", map.width);
