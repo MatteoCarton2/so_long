@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/26 14:18:11 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/26 15:15:55 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_game
     void    *collect;   // image du collectible
     void    *exit;      // image de la sortie
     void    *floor;     // image du sol
+    t_map   *map;       // pointeur vers la map
 } t_game;
 
 // map.c
@@ -60,3 +61,5 @@ int init_game(t_game *game, t_map *map);
 int create_window(t_game *game, t_map *map);
 int load_sprites(t_game *game);
 int draw_map(t_game *game, t_map *map);
+int handle_key(int keycode, t_game *game);
+int is_valid_move(t_map *map, int new_x, int new_y);
