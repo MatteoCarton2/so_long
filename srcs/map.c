@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 16:46:59 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/26 11:44:18 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int read_map(char *filename, t_map *map) {
     line = get_next_line(fd);
     if (!line)
         return (0);
-    map->width = ft_strlen(line); // on stocke la longueur
+    map->width = (ft_strlen(line) - 1); // on stocke la longueur (on enlève le \n)
     map->height = 1; // première ligne (on va ensuite ajouter ++ à chaque ligne pour compter la hauteur)
     free (line);
     line = get_next_line(fd);
     while (line != NULL)
     {
         // vérifier que la ligne à la même longueur
-        if (ft_strlen(line) != map->width)
+        if ((ft_strlen(line) - 1) != map->width) // on elève le \n
         {
             free(line);
             return (0);
@@ -60,6 +60,11 @@ int read_map(char *filename, t_map *map) {
         free(line);
         line = get_next_line(fd); // lire la ligne suivante
     }
+    if (map->height >= map->width)
+        {
+            ft_printf("On a pas un rectangle !\n"); // debug
+            return (0);
+        }
     
     close(fd);
     return (1);
@@ -128,9 +133,9 @@ int store_map(char *filename, t_map *map) {
     while (i < map->height)
     {
         j = 0;
-        line = get_next_line(fd);
         map->map[i] = malloc(sizeof(char) * map->width + 1); // +1 pour le \0
         map->map_copy[i] = malloc(sizeof(char) * map->width + 1);
+        line = get_next_line(fd);
         while (line[j] != '\0')
         {
             map->map[i][j] = line[j];

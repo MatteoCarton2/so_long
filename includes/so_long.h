@@ -6,11 +6,12 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 17:28:32 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/25 18:15:07 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+#include "../mlx/minilibx_opengl_20191021/mlx.h"
 #include <fcntl.h>
 
 typedef struct s_map
@@ -28,6 +29,15 @@ typedef struct s_map
 	int		moves;		// nombre de mouvements
 }	t_map;
 
+typedef struct s_game
+{
+    void    *mlx;       // connexion à la MiniLibX
+    void    *win;       // la fenêtre
+    void    *img;       // les image
+    int     width;      // largeur de la fenêtre
+    int     height;     // hauteur de la fenêtre
+} t_game;
+
 // map.c
 int check_extension(char *filename);
 int read_map(char *filename, t_map *map);
@@ -39,3 +49,7 @@ int check_path(t_map *map);
 int find_player_and_flood(t_map *map);
 int check_exit_and_collectibles(t_map *map);
 void flood_fill(t_map *map, size_t x, size_t y);
+
+// game.c
+int init_game(t_game *game, t_map *map);
+int create_window(t_game *game, t_map *map);

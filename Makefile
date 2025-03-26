@@ -6,7 +6,7 @@
 #    By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 10:52:39 by mcarton           #+#    #+#              #
-#    Updated: 2025/03/25 15:36:54 by mcarton          ###   ########.fr        #
+#    Updated: 2025/03/25 18:16:45 by mcarton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,25 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = srcs/main.c srcs/map.c srcs/path.c
+# MiniLibX
+MLX_DIR = mlx/minilibx_opengl_20191021
+MLX_FLAGS = -framework OpenGL -framework AppKit
+MLX_LIB = -L$(MLX_DIR) -lmlx
+
+SRCS = srcs/main.c srcs/map.c srcs/path.c srcs/game.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) -L./libft -lft -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT) $(MLX_DIR)/libmlx.a
+	$(CC) $(CFLAGS) $(OBJS) -L./libft -lft $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
 
 $(LIBFT):
 	make -C libft
+
+$(MLX_DIR)/libmlx.a:
+	make -C $(MLX_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I./includes -c $< -o $@
@@ -35,6 +43,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	make fclean -C libft
+	make clean -C $(MLX_DIR)
 
 re: fclean all
 

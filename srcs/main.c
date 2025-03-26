@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:13:09 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 17:42:09 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/25 18:15:09 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 int main(int argc, char **argv) {
 
     t_map map;
+    t_game game;
     
     if (argc != 2)
     {
@@ -57,5 +58,21 @@ int main(int argc, char **argv) {
     ft_printf("Width: %d\n", map.width);
     ft_printf("Height: %d\n", map.height);
     ft_printf("Carte Valide ✅");
+
+
+    // GAME
+
+    
+    if (init_game(&game, &map) == 0)
+    {
+        ft_printf("Error\nFailed to initialize game ❌\n");
+        return (1);
+    }
+    if (create_window(&game, &map) == 0)
+    {
+        ft_printf("Error\nFailed to create window ❌\n");
+        return (1);
+    }
+    mlx_loop(game.mlx); // diff entre game.mlx et game->mlx
     return (0);
 }

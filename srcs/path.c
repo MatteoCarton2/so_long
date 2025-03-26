@@ -6,11 +6,33 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:37:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 17:42:21 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/26 11:45:42 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+int check_path(t_map *map) {
+    if (find_player_and_flood(map) == 0)
+        return (0);
+        
+    // DEBUG - Afficher la carte map_copy
+    
+    ft_printf("\nCarte copy après flood_fill :\n");
+    size_t i = 0;
+    while (i < map->height)
+    {
+        ft_printf("%s", map->map_copy[i]);
+        i++;
+    }
+
+    // FIN DEBUG 
+
+    
+    if (check_exit_and_collectibles(map) == 0)
+        return (0);
+    return (1);
+}
 
 
 int find_player_and_flood(t_map *map) {
@@ -66,28 +88,6 @@ int check_exit_and_collectibles(t_map *map) {
         }
         y++;
     }
-    return (1);
-}
-
-int check_path(t_map *map) {
-    if (find_player_and_flood(map) == 0)
-        return (0);
-        
-    // DEBUG - Afficher la carte map_copy
-    
-    ft_printf("\nCarte copy après flood_fill :\n");
-    size_t i = 0;
-    while (i < map->height)
-    {
-        ft_printf("%s", map->map_copy[i]);
-        i++;
-    }
-
-    // FIN DEBUG 
-
-    
-    if (check_exit_and_collectibles(map) == 0)
-        return (0);
     return (1);
 }
 
