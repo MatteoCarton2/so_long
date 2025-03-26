@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:54:07 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/26 15:59:00 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/26 16:58:11 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int init_game(t_game *game, t_map *map)
     C'est une limitation de la bibliothèque, pas de mon code, donc handle_key peut avoir que 2 paramètres 
     (en réalité 1 car on a besoin du key_code) */
     mlx_key_hook(game->win, handle_key, game);
+    // Le 0 = event_mask, c'est comme un sous-type à l'évènement d'avant (mais pour 17, y'a rien donc on met 0 pour respecter la convention)
+    mlx_hook(game->win, 17, 0, exit_game, game); // 17 : DestroyNotify (fermeture fenêtre)
     return (1);
 }
 
@@ -163,7 +165,7 @@ int handle_key(int keycode, t_game *game)
         if (game->map->map[game->map->player_y][game->map->player_x] == 'E')
         {
             ft_printf("Félicitations ! Vous avez gagné en %d coups!\n", game->map->moves);
-            exit(0);
+            exit_game(game);
         }
         
         // mettre à jour la nouvelle case ou notre joueur est par 'P'
@@ -184,5 +186,23 @@ int is_valid_move(t_map *map, int new_x, int new_y)
         return (0);
     if (map->map[new_y][new_x] == 'E' && map->collected < map->collectibles) // si on est à la sortie mais qu'on a pas récup tous les collectibles, pas possible
         return (0);
+    return (1);
+}
+
+int exit_game(t_game *game)
+{
+    if (game->mlx != NULL && game->wall != NULL)
+        mlx_destroy_image(game->mlx, game->wall);
+    if (game->mlx != NULL && game->player != NULL)
+        mlx_destroy_image(game->mlx, game->player);
+    if (game->mlx != NULL && game->exit != NULL)
+        mlx_destroy_image(game->mlx, game->exit);
+    if (game->mlx != NULL && game->floor != NULL)
+        mlx_destroy_image(game->mlx, game->floor);
+    if (game->mlx != NULL && game->collect != NULL)
+        mlx_destroy_image(game->mlx, game->collect);
+    if (game->mlx != NULL && game->win != NULL)
+        mlx_destroy_window(game->mlx, game->win);
+    exit(0);
     return (1);
 }

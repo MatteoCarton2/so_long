@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/26 15:50:23 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/26 16:58:36 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,4 @@ int load_sprites(t_game *game);
 int draw_map(t_game *game, t_map *map);
 int handle_key(int keycode, t_game *game);
 int is_valid_move(t_map *map, int new_x, int new_y);
+int exit_game(t_game *game);
