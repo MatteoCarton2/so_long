@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:54:07 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/26 15:47:24 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/26 15:59:00 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int init_game(t_game *game, t_map *map)
 {
     game->map = map;
     map->collected = 0;
+    map->moves = 0;
     /* mlx init = fonction qui prépare tout ce dont on a besoin pour faire des graphismes. 
     1. Alloue de la mémoire pour :
         La connexion au système graphique de notre OS
@@ -156,10 +157,12 @@ int handle_key(int keycode, t_game *game)
         if (game->map->map[game->map->player_y][game->map->player_x] == 'C') // si notre perso est sur un collectible
             game->map->collected++;
         
+        ft_printf("Total moves : %d\n", ++game->map->moves);
+        
         // Vérifier si on a gagné (sur la sortie avec tous les collectibles)
         if (game->map->map[game->map->player_y][game->map->player_x] == 'E')
         {
-            printf("Félicitations ! Vous avez gagné !\n");
+            ft_printf("Félicitations ! Vous avez gagné en %d coups!\n", game->map->moves);
             exit(0);
         }
         
@@ -168,6 +171,7 @@ int handle_key(int keycode, t_game *game)
 
         // On met à jour la map
         draw_map(game, game->map);
+        
     }
     return (1);
 }
