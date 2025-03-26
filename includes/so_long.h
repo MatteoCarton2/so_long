@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/26 16:58:36 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/26 17:16:04 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int check_extension(char *filename);
 int read_map(char *filename, t_map *map);
 int validate_map(char *filename, t_map *map);
 int store_map(char *filename, t_map *map);
+int check_walls(t_map *map);
 
 // path.c
 int check_path(t_map *map);

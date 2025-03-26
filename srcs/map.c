@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/26 11:44:18 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/26 17:19:23 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,32 @@ int store_map(char *filename, t_map *map) {
     }
     
     // FIN DEBUG
+
+    return (1);
+}
+
+int check_walls(t_map *map)
+{
+   size_t i;
+
+   i = 0;
+
+   // Vérifier première et dernière ligne
+   while (i < map->width)
+   {
+    if (map->map[0][i] != '1' || map->map[map->height - 1][i] != '1')
+        return (0);
+        i++;
+    }
+    
+    // Vérifier première et dernière colonne
+    i = 0;
+    while (i < map->height)
+    {
+        if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
+            return (0);
+        i++;
+    }
 
     return (1);
 }
