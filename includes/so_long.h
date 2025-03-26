@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/25 18:15:07 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/26 14:18:11 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ typedef struct s_game
     void    *img;       // les image
     int     width;      // largeur de la fenêtre
     int     height;     // hauteur de la fenêtre
+    void    *wall;      // image du mur
+    void    *player;    // image du joueur
+    void    *collect;   // image du collectible
+    void    *exit;      // image de la sortie
+    void    *floor;     // image du sol
 } t_game;
 
 // map.c
@@ -53,3 +58,5 @@ void flood_fill(t_map *map, size_t x, size_t y);
 // game.c
 int init_game(t_game *game, t_map *map);
 int create_window(t_game *game, t_map *map);
+int load_sprites(t_game *game);
+int draw_map(t_game *game, t_map *map);
