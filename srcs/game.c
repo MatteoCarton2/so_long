@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:54:07 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/26 16:58:11 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/26 17:38:53 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,15 @@ int handle_key(int keycode, t_game *game)
 {
     int new_x = game->map->player_x;
     int new_y = game->map->player_y;
-    
+    int is_movement_key;
+
+    is_movement_key = 0;
     if (keycode == 53) // = ESC
         exit(0);
+    
+    if (keycode == 13 || keycode == 1 || keycode == 0 || keycode == 2)
+        is_movement_key = 1;
+    
     if (keycode == 13)  // W (haut)
         new_y--;
     
@@ -147,7 +153,7 @@ int handle_key(int keycode, t_game *game)
     
     /* Comme l'appel a handle_key depuis mlx_key_hook ne peut avoir que 2 paramètres (keycode + 1 au choix), 
     on accède aux données de la map depuis la struct de la game (qui contient un ptr vers la map)*/
-    if(is_valid_move(game->map, new_x, new_y) == 1)
+    if(is_movement_key && is_valid_move(game->map, new_x, new_y) == 1)
     {
         // remplacer l'ancienne position du joueur (player x et y car on les a tjr 
         // pas mis à jour, par 'O' (car y'a plus rien désormais))
