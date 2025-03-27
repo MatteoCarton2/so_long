@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/26 17:16:04 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/27 13:12:37 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ int check_walls(t_map *map);
 
 // path.c
 int check_path(t_map *map);
-int find_player_and_flood(t_map *map);
+int find_player(t_map *map);
 int check_exit_and_collectibles(t_map *map);
 void flood_fill(t_map *map, size_t x, size_t y);
+int find_exit(t_map *map);
+void flood_fill_without_exit(t_map *map, size_t x, size_t y);
 
 // game.c
 int init_game(t_game *game, t_map *map);
