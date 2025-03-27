@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:37:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/27 13:23:52 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/27 13:31:13 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ int check_path(t_map *map) {
     
     if (check_exit_and_collectibles(map) == 0)
         return (0);
+    // free
+    i = 0;
+    while (i < map->height)
+    {
+        free(map->map_copy[i]);
+        i++;
+    }
+    free(map->map_copy);
     return (1);
 }
 

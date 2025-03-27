@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:54:07 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/26 17:38:53 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/27 13:36:18 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,15 @@ int is_valid_move(t_map *map, int new_x, int new_y)
 
 int exit_game(t_game *game)
 {
+    size_t i;
+
+    i = 0;
+    while (i < game->map->height)
+    {
+        free(game->map->map[i]);
+        i++;
+    }
+    free(game->map->map);
     if (game->mlx != NULL && game->wall != NULL)
         mlx_destroy_image(game->mlx, game->wall);
     if (game->mlx != NULL && game->player != NULL)
