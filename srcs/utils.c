@@ -6,72 +6,74 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:09:52 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/28 11:02:47 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/28 11:51:16 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int open_and_get_line(char *filename, char **line)
+int	open_and_get_line(char *filename, char **line)
 {
-    int fd;
+	int	fd;
 
-    fd = open(filename, O_RDONLY);
-    if (fd == -1)
-        return (-1);
-    *line = get_next_line(fd);
-    if (!*line)
-    {
-        close(fd);
-        return (-1);
-    }
-    return (fd);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	*line = get_next_line(fd);
+	if (!*line)
+	{
+		close(fd);
+		return (-1);
+	}
+	return (fd);
 }
 
-int find_player(t_map *map) {
-    size_t y;
-    size_t x;
+int	find_player(t_map *map)
+{
+	size_t	y;
+	size_t	x;
 
-    y = 0;
-    while (y < map->height)
-    {
-        x = 0;
-        while (x < map->width)
-        {
-            if (map->map[y][x] == 'P')
-            {
-                printf("Position joueur trouvée, X : %zu et Y : %zu\n", x, y); // DEBUG
-                map->player_x = x;
-                map->player_y = y;
-                return (1);
-            }
-            x++;
-        }
-        y++;
-    }
-    return (0);
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			if (map->map[y][x] == 'P')
+			{
+				printf("Position joueur trouvée, X : %zu et Y : %zu\n", x, y);
+				map->player_x = x;
+				map->player_y = y;
+				return (1);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
 }
 
-int find_exit(t_map *map) {
-    size_t y;
-    size_t x;
+int	find_exit(t_map *map)
+{
+	size_t	y;
+	size_t	x;
 
-    y = 0;
-    while (y < map->height)
-    {
-        x = 0;
-        while (x < map->width)
-        {
-            if (map->map[y][x] == 'E')
-            {
-                printf("Position sortie trouvée, X : %zu et Y : %zu\n", x, y); // DEBUG
-                map->exit_x = x;
-                map->exit_y = y;
-                return (1);
-            }
-            x++;
-        }
-        y++;
-    }
-    return (0);
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			if (map->map[y][x] == 'E')
+			{
+				printf("Position sortie trouvée, X : %zu et Y : %zu\n", x, y);
+				map->exit_x = x;
+				map->exit_y = y;
+				return (1);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
 }
