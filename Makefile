@@ -6,7 +6,7 @@
 #    By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 10:52:39 by mcarton           #+#    #+#              #
-#    Updated: 2025/03/25 18:16:45 by mcarton          ###   ########.fr        #
+#    Updated: 2025/03/28 11:19:14 by mcarton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,14 @@ MLX_DIR = mlx/minilibx_opengl_20191021
 MLX_FLAGS = -framework OpenGL -framework AppKit
 MLX_LIB = -L$(MLX_DIR) -lmlx
 
-SRCS = srcs/main.c srcs/map.c srcs/path.c srcs/game.c
+SRCS = srcs/main.c \
+       srcs/map.c \
+	   srcs/map_check.c \
+       srcs/path.c \
+       srcs/game_init.c \
+       srcs/game_events.c \
+	   srcs/utils.c
+
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft/libft.a
 

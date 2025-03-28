@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/27 23:06:21 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/28 11:11:44 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,13 @@ typedef struct s_game
 // map.c
 int validate_map(char *filename, t_map *map);
 int store_map(char *filename, t_map *map);
-static void store_map_line(char *line, t_map *map, size_t i);
 int count_elements(char *filename, t_map *map, int *P_counter, int *E_counter, int *C_counter);
-static int count_line_elements(char *line, int *P_counter, int *E_counter, int *C_counter);
 
 //map_check.c
+int check_extension(char *filename);
+int check_rectangle(char *filename, t_map *map);
+int check_walls(t_map *map);
+
 
 // path.c
 int check_path(t_map *map);
@@ -59,14 +61,14 @@ int check_exit_and_collectibles(t_map *map);
 void flood_fill(t_map *map, size_t x, size_t y);
 void flood_fill_without_exit(t_map *map, size_t x, size_t y);
 
-// game.c
+// game_init.c
 int init_game(t_game *game, t_map *map);
-int create_window(t_game *game, t_map *map);
 int load_sprites(t_game *game);
 int draw_map(t_game *game, t_map *map);
-int handle_key(int keycode, t_game *game);
-int is_valid_move(t_map *map, int new_x, int new_y);
 int exit_game(t_game *game);
+
+// game_events.c
+int handle_key(int keycode, t_game *game);
 
 // utils.c
 
