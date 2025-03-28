@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/28 12:24:26 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/03/28 12:28:37 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_game
 	t_map	*map;
 }			t_game;
 
-// map.c
+// map_load.c
 int			validate_map(char *filename, t_map *map);
 int			store_map(char *filename, t_map *map);
 int			count_elements(char *filename, t_map *map);
