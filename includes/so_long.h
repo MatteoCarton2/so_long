@@ -6,12 +6,12 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/28 12:28:37 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:15:29 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "../mlx/minilibx_opengl_20191021/mlx.h"
+#include "../mlx/mlx.h"
 #include <fcntl.h>
 
 typedef struct s_map
