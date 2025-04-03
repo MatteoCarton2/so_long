@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 10:37:58 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/28 11:46:28 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:03:55 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ int	handle_key(int keycode, t_game *game)
 		if (is_valid_move(game->map, new_x, new_y))
 		{
 			update_player_position(game, new_x, new_y);
+			mlx_clear_window(game->mlx, game->win);
 			draw_map(game, game->map);
+			mlx_do_sync(game->mlx);
 		}
 	}
 	return (1);
