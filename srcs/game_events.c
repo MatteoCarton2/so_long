@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 10:37:58 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/03 19:31:18 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:34:21 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	get_new_position(int keycode, int *new_x, int *new_y, t_game *game)
 {
 	*new_x = game->map->player_x;
-	*new_y = game->map->player_y;1
+	*new_y = game->map->player_y;
 	if (keycode == 119)
 		(*new_y)--;
 	else if (keycode == 115)
