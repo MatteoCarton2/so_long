@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/03 19:33:41 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:40:14 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int			init_game(t_game *game, t_map *map);
 int			load_sprites(t_game *game);
 int			draw_map(t_game *game, t_map *map);
 int			exit_game(t_game *game);
+int			put_image(t_game *game, char tile, size_t x, size_t y);
 
 // game_events.c
 int			handle_key(int keycode, t_game *game);

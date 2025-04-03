@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:54:07 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/03 19:36:04 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:39:58 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	load_sprites(t_game *game)
 	return (1);
 }
 
-static int	put_image(t_game *game, char tile, size_t x, size_t y)
+int	put_image(t_game *game, char tile, size_t x, size_t y)
 {
 	if (tile == '1')
 		return (mlx_put_image_to_window(game->mlx, game->win, game->wall, x
