@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 10:37:58 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/03 19:34:21 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:37:14 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	handle_key(int keycode, t_game *game)
 			mlx_clear_window(game->mlx, game->win);
 			draw_map(game, game->map);
 			mlx_do_sync(game->mlx);
+			usleep(1000);  /* Petit délai de 1ms pour s'assurer que l'image est bien affichée */
 		}
 	}
 	return (1);
