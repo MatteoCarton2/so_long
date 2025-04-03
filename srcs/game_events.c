@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 10:37:58 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/03 19:39:15 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:44:12 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,8 @@ int	handle_key(int keycode, t_game *game)
 {
 	int	new_x;
 	int	new_y;
-	size_t	x;
-	size_t	y;
 
-	if (keycode == 65307)  /* Touche Échap */
+	if (keycode == 65307)
 		exit_game(game);
 	if (keycode == 119 || keycode == 115 || keycode == 97 || keycode == 100)
 	{
@@ -78,19 +76,7 @@ int	handle_key(int keycode, t_game *game)
 		if (is_valid_move(game->map, new_x, new_y))
 		{
 			update_player_position(game, new_x, new_y);
-			/* On redessine la carte case par case */
-			y = 0;
-			while (y < game->map->height)
-			{
-				x = 0;
-				while (x < game->map->width)
-				{
-					put_image(game, game->map->map[y][x], x, y);
-					x++;
-				}
-				y++;
-			}
-			mlx_do_sync(game->mlx);
+			redraw_map(game);
 		}
 	}
 	return (1);

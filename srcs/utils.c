@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:09:52 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/28 11:51:16 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:44:50 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,23 @@ int	find_exit(t_map *map)
 		y++;
 	}
 	return (0);
+}
+
+void	redraw_map(t_game *game)
+{
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (y < game->map->height)
+	{
+		x = 0;
+		while (x < game->map->width)
+		{
+			put_image(game, game->map->map[y][x], x, y);
+			x++;
+		}
+		y++;
+	}
+	mlx_do_sync(game->mlx);
 }
