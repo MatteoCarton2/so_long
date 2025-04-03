@@ -6,24 +6,24 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 10:37:58 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/03 19:03:55 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:31:18 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-/* keycode 13 = W, 1 = S, 0 = A, 2 = D */
+/* keycode Linux : 119 = W, 115 = S, 97 = A, 100 = D */
 static void	get_new_position(int keycode, int *new_x, int *new_y, t_game *game)
 {
 	*new_x = game->map->player_x;
-	*new_y = game->map->player_y;
-	if (keycode == 13)
+	*new_y = game->map->player_y;1
+	if (keycode == 119)
 		(*new_y)--;
-	else if (keycode == 1)
+	else if (keycode == 115)
 		(*new_y)++;
-	else if (keycode == 0)
+	else if (keycode == 97)
 		(*new_x)--;
-	else if (keycode == 2)
+	else if (keycode == 100)
 		(*new_x)++;
 }
 
@@ -68,9 +68,9 @@ int	handle_key(int keycode, t_game *game)
 	int	new_x;
 	int	new_y;
 
-	if (keycode == 53)
+	if (keycode == 65307)  /* Touche Échap */
 		exit_game(game);
-	if (keycode == 13 || keycode == 1 || keycode == 0 || keycode == 2)
+	if (keycode == 119 || keycode == 115 || keycode == 97 || keycode == 100)
 	{
 		get_new_position(keycode, &new_x, &new_y, game);
 		if (is_valid_move(game->map, new_x, new_y))
