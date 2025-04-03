@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:54:07 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/03 19:03:33 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:35:18 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	init_game(t_game *game, t_map *map)
 		return (printf("load_sprites failed\n"), 0);
 	if (draw_map(game, map) == 0)
 		return (printf("draw_map failed\n"), 0);
-	mlx_hook(game->win, 2, 1L<<0, handle_key, game);
     mlx_hook(game->win, 17, 0, exit_game, game);
     mlx_loop(game->mlx);
 	return (1);
