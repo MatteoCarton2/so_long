@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/04 11:34:58 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/04 11:57:58 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	count_line_elements(char *line, t_map *map)
 	int	i;
 
 	i = 0;
-	while (line[i] && line[i] != '\n') // Ajout de line[i] pour vérifier la fin de chaîne
+	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] == 'P')
 			map->p_counter++;

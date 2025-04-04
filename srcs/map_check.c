@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:16:17 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/04 11:32:08 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/04 12:05:57 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	check_rectangle(char *filename, t_map *map)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (map->height > map->width)
-		return (ft_printf("On a pas un rectangle !\n"), 0);
 	close(fd);
 	return (1);
 }
