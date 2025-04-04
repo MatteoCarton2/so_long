@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:16:17 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/28 12:19:20 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/04 11:32:08 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	check_rectangle(char *filename, t_map *map)
 {
 	int		fd;
 	char	*line;
+	size_t	len;
 
 	fd = open_and_get_line(filename, &line);
 	if (fd == -1)
@@ -38,8 +39,11 @@ int	check_rectangle(char *filename, t_map *map)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if ((ft_strlen(line) - 1) != map->width)
-			return (free(line), 0);
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			len--;
+		if (len != map->width)
+			return (free(line), close(fd), 0);
 		map->height++;
 		free(line);
 		line = get_next_line(fd);
