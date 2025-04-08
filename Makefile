@@ -6,7 +6,7 @@
 #    By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 10:52:39 by mcarton           #+#    #+#              #
-#    Updated: 2025/04/08 23:25:48 by mcarton          ###   ########.fr        #
+#    Updated: 2025/04/08 23:28:06 by mcarton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS = srcs/main.c \
        srcs/game_init.c \
        srcs/game_events.c \
        srcs/utils.c \
-       srcs/utils_free.c \
+       srcs/utils_2.c \
 
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 23:26:22 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:28:02 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ int			find_player(t_map *map);
 int			find_exit(t_map *map);
 void		redraw_map(t_game *game);
 void		handle_error(char *error_message);
-
+void		clear_gnl_buffer(int fd);
 
 // utils_2.c
 void		free_resources(t_game *game);
-void		clear_gnl_buffer(int fd);
