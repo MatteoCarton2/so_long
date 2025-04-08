@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:09:52 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 23:22:19 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:28:47 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,4 @@ void	handle_error(char *error_message)
 	if (error_message)
 		ft_printf("%s\n", error_message);
 	exit(EXIT_FAILURE);
-}
-
-void	clear_gnl_buffer(int fd)
-{
-	char	*line;
-
-	while ((line = get_next_line(fd)) != NULL)
-		free(line);
 }
