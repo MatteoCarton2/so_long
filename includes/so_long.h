@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 21:25:59 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:56:34 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ typedef struct s_game
 	void	*floor;
 	t_map	*map;
 }			t_game;
+
+// main.c
+void		free_resources(t_game *game);
 
 // map_load.c
 int			validate_map(char *filename, t_map *map);
