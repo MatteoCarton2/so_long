@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:54:07 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 22:03:55 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:08:09 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,19 @@ int	draw_map(t_game *game, t_map *map)
 
 int	exit_game(t_game *game)
 {
-	if (game && game->map)
-		free_map_resources(game->map, game->map->height, NULL, -1);
+	size_t	i;
+
+	i = 0;
+	if (game && game->map && game->map->map)
+	{
+		while (i < game->map->height)
+		{
+			if (game->map->map[i])
+				free(game->map->map[i]);
+			i++;
+		}
+		free(game->map->map);
+	}
 	if (game && game->mlx)
 	{
 		if (game->wall)
