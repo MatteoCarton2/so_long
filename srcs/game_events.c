@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 10:37:58 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/03 19:44:12 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:30:33 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,13 @@ static void	check_win(t_game *game)
 {
 	if (game->map->map[game->map->player_y][game->map->player_x] == 'E')
 	{
-		ft_printf("Félicitations ! Vous avez gagné en %d coups!\n",
-			game->map->moves);
+		ft_printf("\n"
+				"╔═════════════════════════════════════╗\n"
+				"║           🏆  VICTORY!  🏆           ║\n"
+				"║                                     ║\n"
+				"║      You escaped in %d moves!       ║\n"
+				"║                                     ║\n"
+				"╚═════════════════════════════════════╝\n\n", game->map->moves);
 		exit_game(game);
 	}
 }
