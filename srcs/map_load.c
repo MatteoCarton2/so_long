@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 21:14:48 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:26:52 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ position de départ	perso = P
 vide = 0
 murs = 1 */
 
-static int			store_map_line(char *line, t_map *map, size_t i);
-static void			free_map_resources(t_map *map, size_t current_row,
-						char *line, int fd);
-static int			count_line_elements(char *line, t_map *map);
-static int			allocate_map_memory(t_map *map, char *line, int fd);
 
 int	validate_map(char *filename, t_map *map)
 {
@@ -39,9 +34,15 @@ int	validate_map(char *filename, t_map *map)
 	if (!store_map(filename, map))
 		handle_error("Failed to store map in memory");
 	if (!check_walls(map))
+	{
+		free_map_resources(map, map->height, NULL, -1);
 		handle_error("Map must be surrounded by walls");
+	}
 	if (!count_elements(filename, map))
+	{
+		free_map_resources(map, map->height, NULL, -1);
 		handle_error("Invalid map elements configuration");
+	}
 	return (1);
 }
 

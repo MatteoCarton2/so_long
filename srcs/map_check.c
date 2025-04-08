@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:16:17 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 21:15:22 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:25:38 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,20 @@ void	free_map_resources(t_map *map, size_t current_row, char *line, int fd)
 	i = 0;
 	while (i < current_row)
 	{
-		free(map->map[i]);
-		free(map->map_copy[i]);
+		if (map->map && map->map[i])
+			free(map->map[i]);
+		if (map->map_copy && map->map_copy[i])
+			free(map->map_copy[i]);
 		i++;
 	}
-	free(map->map);
-	free(map->map_copy);
-	free(line);
-	close(fd);
+	if (map->map)
+		free(map->map);
+	if (map->map_copy)
+		free(map->map_copy);
+	if (line)
+		free(line);
+	if (fd != -1)
+		close(fd);
 }
 
 int	count_line_elements(char *line, t_map *map)
