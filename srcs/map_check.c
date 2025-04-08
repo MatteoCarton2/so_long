@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:16:17 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 21:25:38 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:11:39 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_extension(char *filename)
 	int	length;
 
 	length = ft_strlen(filename);
-	if (length < 4)
+	if (length < 5)
 		return (0);
 	if (ft_strncmp(filename + (length - 4), ".ber", 4) == 0)
 		return (1);
