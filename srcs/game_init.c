@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:54:07 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 20:21:03 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:52:54 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,31 @@ int	exit_game(t_game *game)
 	size_t	i;
 
 	i = 0;
-	while (i < game->map->height)
+	if (game->map != NULL)
 	{
-		free(game->map->map[i]);
-		i++;
+		if (game->map->map != NULL)
+		{
+			while (i < game->map->height)
+			{
+				if (game->map->map[i] != NULL)
+					free(game->map->map[i]);
+				i++;
+			}
+			free(game->map->map);
+		}
+		// Libération de map_copy s'il existe encore
+		i = 0;
+		if (game->map->map_copy != NULL)
+		{
+			while (i < game->map->height)
+			{
+				if (game->map->map_copy[i] != NULL)
+					free(game->map->map_copy[i]);
+				i++;
+			}
+			free(game->map->map_copy);
+		}
 	}
-	free(game->map->map);
 	if (game->mlx != NULL && game->wall != NULL)
 		mlx_destroy_image(game->mlx, game->wall);
 	if (game->mlx != NULL && game->player != NULL)
@@ -126,6 +145,10 @@ int	exit_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->collect);
 	if (game->mlx != NULL && game->win != NULL)
 		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx != NULL)
+		mlx_destroy_display(game->mlx);
+	if (game->mlx != NULL)
+		free(game->mlx);
 	exit(EXIT_SUCCESS);
 	return (1);
 }
