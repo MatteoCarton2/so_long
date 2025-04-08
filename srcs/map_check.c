@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:16:17 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 22:11:39 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:26:15 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,18 @@
 int	check_extension(char *filename)
 {
 	int	length;
+	int	fd;
 
 	length = ft_strlen(filename);
-	if (length < 5)
-		return (0);
-	if (ft_strncmp(filename + (length - 4), ".ber", 4) == 0)
-		return (1);
-	return (0);
+	if (length <= 4)
+		handle_error("Invalid map file");
+	if (ft_strncmp(filename + (length - 4), ".ber", 4) != 0)
+		handle_error("File extension must be .ber");
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		handle_error("Cannot open file");
+	close(fd);
+	return (1);
 }
 
 int	check_rectangle(char *filename, t_map *map)
