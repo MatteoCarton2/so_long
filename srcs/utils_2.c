@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 23:15:12 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 23:26:03 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:34:29 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ void	clear_gnl_buffer(int fd)
 {
 	char	*line;
 
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
 		free(line);
+		line = get_next_line(fd);
+	}
 }
 
 void	free_resources(t_game *game)
