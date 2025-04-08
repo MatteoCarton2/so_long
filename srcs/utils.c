@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:09:52 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 23:07:48 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:09:17 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,5 @@ void	handle_error(char *error_message)
 	ft_printf("Error\n");
 	if (error_message)
 		ft_printf("%s\n", error_message);
-	// Essayer de vider le buffer de get_next_line
-	get_next_line(-1);
 	exit(EXIT_FAILURE);
 }
