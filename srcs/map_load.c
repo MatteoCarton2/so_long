@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 23:20:58 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:26:38 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,7 @@ int	count_elements(char *filename, t_map *map)
 	while (line != NULL)
 	{
 		if (count_line_elements(line, map) == 0)
-		{
-			free(line);
-			clear_gnl_buffer(fd);
-			close(fd);
-			return (0);
-		}
+			return (free(line), clear_gnl_buffer(fd), close(fd), 0);
 		free(line);
 		line = get_next_line(fd);
 	}
