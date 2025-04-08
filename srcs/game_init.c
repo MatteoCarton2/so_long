@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:54:07 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 21:54:51 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:57:16 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,19 @@ int	exit_game(t_game *game)
 			}
 			free(game->map->map);
 		}
+		
+		// Libérer map_copy s'il existe encore
+		i = 0;
+		if (game->map->map_copy)
+		{
+			while (i < game->map->height)
+			{
+				if (game->map->map_copy[i])
+					free(game->map->map_copy[i]);
+				i++;
+			}
+			free(game->map->map_copy);
+		}
 	}
 	if (game && game->mlx)
 	{
@@ -135,6 +148,7 @@ int	exit_game(t_game *game)
 			mlx_destroy_image(game->mlx, game->collect);
 		if (game->win)
 			mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
 	exit(EXIT_SUCCESS);
