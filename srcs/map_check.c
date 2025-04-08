@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:16:17 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 22:35:40 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:45:04 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ int	check_extension(char *filename)
 	int	fd;
 
 	length = ft_strlen(filename);
-	if (length <= 4 || ft_strncmp(filename + (length - 4), ".ber", 4) != 0)
+	if (ft_strncmp(filename + length - 4, ".ber", 4) != 0)
 		handle_error("Invalid map file");
-	
+	if (ft_strncmp(filename, ".ber", 4) == 0 && 
+		(filename[4] == '\0' || filename[4] == '/'))
+		handle_error("Invalid map file");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		handle_error("Cannot open file");
