@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/03 19:43:56 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:13:53 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,4 @@ int			open_and_get_line(char *filename, char **line);
 int			find_player(t_map *map);
 int			find_exit(t_map *map);
 void		redraw_map(t_game *game);
+void		handle_error(char *error_message);

@@ -6,7 +6,7 @@
 #    By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 10:52:39 by mcarton           #+#    #+#              #
-#    Updated: 2025/04/03 19:14:43 by mcarton          ###   ########.fr        #
+#    Updated: 2025/04/08 19:57:08 by mcarton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(MLX_DIR)/libmlx.a:
 clean:
 	rm -f $(OBJS)
 	make clean -C libft
-	make clean -C $(MLX_DIR)
+	if [ -f $(MLX_DIR)/Makefile.gen ]; then make clean -C $(MLX_DIR); fi
 
 fclean: clean
 	rm -f $(NAME)

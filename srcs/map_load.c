@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/04 11:57:58 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:23:38 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ int	validate_map(char *filename, t_map *map)
 	map->e_counter = 0;
 	map->c_counter = 0;
 	if (!check_extension(filename))
-		return (ft_printf("Error\n❌ Invalid file extension\n"), 0);
+		handle_error("Invalid file extension");
 	if (!check_rectangle(filename, map))
-		return (ft_printf("Error\n❌ Map must be rectangular\n"), 0);
+		handle_error("Map must be rectangular");
 	if (!store_map(filename, map))
-		return (ft_printf("Error\n❌ Failed to store map in memory\n"), 0);
+		handle_error("Failed to store map in memory");
 	if (!check_walls(map))
-		return (ft_printf("Error\n❌ Map must be surrounded by walls\n"), 0);
+		handle_error("Map must be surrounded by walls");
 	if (!count_elements(filename, map))
-		return (ft_printf("Error\n❌ Invalid map elements configuration\n"), 0);
+		handle_error("Invalid map elements configuration");
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:09:52 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/03 19:44:50 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:26:06 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	find_player(t_map *map)
 		{
 			if (map->map[y][x] == 'P')
 			{
-				printf("Position joueur trouvée, X : %zu et Y : %zu\n", x, y);
 				map->player_x = x;
 				map->player_y = y;
 				return (1);
@@ -66,7 +65,6 @@ int	find_exit(t_map *map)
 		{
 			if (map->map[y][x] == 'E')
 			{
-				printf("Position sortie trouvée, X : %zu et Y : %zu\n", x, y);
 				map->exit_x = x;
 				map->exit_y = y;
 				return (1);
@@ -95,4 +93,12 @@ void	redraw_map(t_game *game)
 		y++;
 	}
 	mlx_do_sync(game->mlx);
+}
+
+void handle_error(char *error_message)
+{
+	ft_printf("Error\n");
+	if (error_message)
+		ft_printf("%s\n", error_message);
+	exit(EXIT_FAILURE);
 }
