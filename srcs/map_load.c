@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 20:23:38 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:14:48 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ sortie = E
 position de départ	perso = P
 vide = 0
 murs = 1 */
+
+static int			store_map_line(char *line, t_map *map, size_t i);
+static void			free_map_resources(t_map *map, size_t current_row,
+						char *line, int fd);
+static int			count_line_elements(char *line, t_map *map);
+static int			allocate_map_memory(t_map *map, char *line, int fd);
 
 int	validate_map(char *filename, t_map *map)
 {
@@ -40,19 +46,41 @@ int	validate_map(char *filename, t_map *map)
 }
 
 // +1 pour le \0
-static void	store_map_line(char *line, t_map *map, size_t i)
+static int	store_map_line(char *line, t_map *map, size_t i)
 {
 	size_t	j;
 
 	j = 0;
 	map->map[i] = malloc(sizeof(char) * map->width + 1);
+	if (!map->map[i])
+		return (0);
 	map->map_copy[i] = malloc(sizeof(char) * map->width + 1);
+	if (!map->map_copy[i])
+	{
+		free(map->map[i]);
+		return (0);
+	}
 	while (line[j] != '\0')
 	{
 		map->map[i][j] = line[j];
 		map->map_copy[i][j] = line[j];
 		j++;
 	}
+	return (1);
+}
+
+static int	allocate_map_memory(t_map *map, char *line, int fd)
+{
+	map->map = malloc(sizeof(char *) * map->height);
+	if (!map->map)
+		return (free(line), close(fd), 0);
+	map->map_copy = malloc(sizeof(char *) * map->height);
+	if (!map->map_copy)
+	{
+		free(map->map);
+		return (free(line), close(fd), 0);
+	}
+	return (1);
 }
 
 int	store_map(char *filename, t_map *map)
@@ -64,39 +92,21 @@ int	store_map(char *filename, t_map *map)
 	fd = open_and_get_line(filename, &line);
 	if (fd == -1)
 		return (0);
-	map->map = malloc(sizeof(char *) * map->height);
-	map->map_copy = malloc(sizeof(char *) * map->height);
-	if (!map->map || !map->map_copy)
+	if (!allocate_map_memory(map, line, fd))
 		return (0);
 	i = 0;
 	while (i < map->height)
 	{
-		store_map_line(line, map, i);
+		if (!store_map_line(line, map, i))
+		{
+			free_map_resources(map, i, line, fd);
+			return (0);
+		}
 		free(line);
 		i++;
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (1);
-}
-
-static int	count_line_elements(char *line, t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && line[i] != '\n')
-	{
-		if (line[i] == 'P')
-			map->p_counter++;
-		else if (line[i] == 'E')
-			map->e_counter++;
-		else if (line[i] == 'C')
-			map->c_counter++;
-		else if (line[i] != '0' && line[i] != '1' && line[i] != '\n')
-			return (0);
-		i++;
-	}
 	return (1);
 }
 
@@ -111,7 +121,11 @@ int	count_elements(char *filename, t_map *map)
 	while (line != NULL)
 	{
 		if (count_line_elements(line, map) == 0)
-			return (free(line), 0);
+		{
+			free(line);
+			close(fd);
+			return (0);
+		}
 		free(line);
 		line = get_next_line(fd);
 	}

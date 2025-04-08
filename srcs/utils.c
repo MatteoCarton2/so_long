@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:09:52 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 20:26:06 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:15:12 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	redraw_map(t_game *game)
 	mlx_do_sync(game->mlx);
 }
 
-void handle_error(char *error_message)
+void	handle_error(char *error_message)
 {
 	ft_printf("Error\n");
 	if (error_message)

@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:16:17 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/04 12:05:57 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:15:22 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,43 @@ int	check_walls(t_map *map)
 	while (i < map->height)
 	{
 		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	free_map_resources(t_map *map, size_t current_row, char *line, int fd)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < current_row)
+	{
+		free(map->map[i]);
+		free(map->map_copy[i]);
+		i++;
+	}
+	free(map->map);
+	free(map->map_copy);
+	free(line);
+	close(fd);
+}
+
+int	count_line_elements(char *line, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+	{
+		if (line[i] == 'P')
+			map->p_counter++;
+		else if (line[i] == 'E')
+			map->e_counter++;
+		else if (line[i] == 'C')
+			map->c_counter++;
+		else if (line[i] != '0' && line[i] != '1' && line[i] != '\n')
 			return (0);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 20:13:53 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:13:46 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int			count_elements(char *filename, t_map *map);
 int			check_extension(char *filename);
 int			check_rectangle(char *filename, t_map *map);
 int			check_walls(t_map *map);
-
+void		free_map_resources(t_map *map, size_t current_row, char *line,
+				int fd);
+int			count_line_elements(char *line, t_map *map);
 // path.c
 int			check_path(t_map *map);
 int			check_exit_and_collectibles(t_map *map);
