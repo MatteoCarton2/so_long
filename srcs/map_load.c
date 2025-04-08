@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 21:26:52 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:04:19 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ sortie = E
 position de départ	perso = P
 vide = 0
 murs = 1 */
-
 
 int	validate_map(char *filename, t_map *map)
 {
