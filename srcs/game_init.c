@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:54:07 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 21:52:54 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:54:51 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,47 +108,35 @@ int	exit_game(t_game *game)
 	size_t	i;
 
 	i = 0;
-	if (game->map != NULL)
+	if (game && game->map)
 	{
-		if (game->map->map != NULL)
+		if (game->map->map)
 		{
 			while (i < game->map->height)
 			{
-				if (game->map->map[i] != NULL)
+				if (game->map->map[i])
 					free(game->map->map[i]);
 				i++;
 			}
 			free(game->map->map);
 		}
-		// Libération de map_copy s'il existe encore
-		i = 0;
-		if (game->map->map_copy != NULL)
-		{
-			while (i < game->map->height)
-			{
-				if (game->map->map_copy[i] != NULL)
-					free(game->map->map_copy[i]);
-				i++;
-			}
-			free(game->map->map_copy);
-		}
 	}
-	if (game->mlx != NULL && game->wall != NULL)
-		mlx_destroy_image(game->mlx, game->wall);
-	if (game->mlx != NULL && game->player != NULL)
-		mlx_destroy_image(game->mlx, game->player);
-	if (game->mlx != NULL && game->exit != NULL)
-		mlx_destroy_image(game->mlx, game->exit);
-	if (game->mlx != NULL && game->floor != NULL)
-		mlx_destroy_image(game->mlx, game->floor);
-	if (game->mlx != NULL && game->collect != NULL)
-		mlx_destroy_image(game->mlx, game->collect);
-	if (game->mlx != NULL && game->win != NULL)
-		mlx_destroy_window(game->mlx, game->win);
-	if (game->mlx != NULL)
-		mlx_destroy_display(game->mlx);
-	if (game->mlx != NULL)
+	if (game && game->mlx)
+	{
+		if (game->wall)
+			mlx_destroy_image(game->mlx, game->wall);
+		if (game->player)
+			mlx_destroy_image(game->mlx, game->player);
+		if (game->exit)
+			mlx_destroy_image(game->mlx, game->exit);
+		if (game->floor)
+			mlx_destroy_image(game->mlx, game->floor);
+		if (game->collect)
+			mlx_destroy_image(game->mlx, game->collect);
+		if (game->win)
+			mlx_destroy_window(game->mlx, game->win);
 		free(game->mlx);
+	}
 	exit(EXIT_SUCCESS);
 	return (1);
 }
