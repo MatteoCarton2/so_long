@@ -6,20 +6,11 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 23:35:12 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/09 20:56:27 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-/* ENLEVER LES DEBUG
-voir si il faut garder le \n dans le ft_strlen ou pas
-
-objets à collecter = C
-sortie = E
-position de départ	perso = P
-vide = 0
-murs = 1 */
 
 int	validate_map(char *filename, t_map *map)
 {

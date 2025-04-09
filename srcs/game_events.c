@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 10:37:58 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 21:14:31 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/09 20:34:43 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void	check_win(t_game *game)
 	}
 }
 
-/* remplacer l'ancienne position du joueur (player x et y car on les a tjr
-pas mis à jour. Par 'O' (car y'a plus rien désormais)) */
+/* replace the old player position (player_x and player_y because we haven't
+updated them yet. With 'O' (because there's nothing there anymore)) */
 static void	update_player_position(t_game *game, int new_x, int new_y)
 {
 	game->map->map[game->map->player_y][game->map->player_x] = '0';

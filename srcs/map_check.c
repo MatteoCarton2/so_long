@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:16:17 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/09 15:24:52 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/09 20:39:22 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	check_rectangle(char *filename, t_map *map)
 	return (1);
 }
 
-// Vérifier 1ère et dernière ligne puis 1ère et dernière colonne
+// Check first and last row then first and last column
 int	check_walls(t_map *map)
 {
 	size_t	i;

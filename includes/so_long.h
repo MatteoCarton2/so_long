@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 23:28:02 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/09 20:57:52 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ int			count_line_elements(char *line, t_map *map);
 
 // path.c
 int			check_path(t_map *map);
-int			check_exit_and_collectibles(t_map *map);
-void		flood_fill(t_map *map, size_t x, size_t y);
-void		flood_fill_without_exit(t_map *map, size_t x, size_t y);
 
 // game_init.c
 int			init_game(t_game *game, t_map *map);

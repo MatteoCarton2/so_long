@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:37:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/03/28 12:11:21 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/09 20:56:47 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_path(t_map *map)
 	return (1);
 }
 
-int	check_exit_and_collectibles(t_map *map)
+static int	check_exit_and_collectibles(t_map *map)
 {
 	size_t	y;
 	size_t	x;
@@ -58,7 +58,7 @@ int	check_exit_and_collectibles(t_map *map)
 }
 
 /* ordre = haut, bas, gauche, droite */
-void	flood_fill(t_map *map, size_t x, size_t y)
+static void	flood_fill(t_map *map, size_t x, size_t y)
 {
 	if (x < map->width && y < map->height)
 	{
@@ -72,7 +72,7 @@ void	flood_fill(t_map *map, size_t x, size_t y)
 	}
 }
 
-void	flood_fill_without_exit(t_map *map, size_t x, size_t y)
+static void	flood_fill_without_exit(t_map *map, size_t x, size_t y)
 {
 	if (x < map->width && y < map->height)
 	{
