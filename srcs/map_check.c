@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:16:17 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/08 23:28:02 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/09 15:21:48 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,21 @@
 
 int	check_extension(char *filename)
 {
-	int	length;
-	int	fd;
+	char	*base;
+	int		length;
+	int		fd;
 
-	length = ft_strlen(filename);
-	if (length < 4 || ft_strncmp(filename + length - 4, ".ber", 4) != 0)
+	base = filename;
+	while (*filename)
+	{
+		if (*filename == '/')
+			base = filename + 1;
+		filename++;
+	}
+	length = ft_strlen(base);
+	if (length < 5 || ft_strncmp(base + length - 4, ".ber", 4) != 0)
+		handle_error("Invalid extension, not a .ber file");
+	if (base[0] == '.')
 		handle_error("Invalid extension, not a .ber file");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
