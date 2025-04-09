@@ -6,35 +6,11 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:37:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/09 20:56:47 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/09 21:02:37 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-int	check_path(t_map *map)
-{
-	size_t	i;
-
-	if (find_player(map) == 0 || find_exit(map) == 0)
-		return (0);
-	map->map_copy[map->exit_y][map->exit_x] = '1';
-	flood_fill_without_exit(map, map->player_x, map->player_y);
-	if (check_exit_and_collectibles(map) == 0)
-		return (0);
-	map->map_copy[map->exit_y][map->exit_x] = 'E';
-	flood_fill(map, map->player_x, map->player_y);
-	if (check_exit_and_collectibles(map) == 0)
-		return (0);
-	i = 0;
-	while (i < map->height)
-	{
-		free(map->map_copy[i]);
-		i++;
-	}
-	free(map->map_copy);
-	return (1);
-}
 
 static int	check_exit_and_collectibles(t_map *map)
 {
@@ -84,4 +60,28 @@ static void	flood_fill_without_exit(t_map *map, size_t x, size_t y)
 		flood_fill_without_exit(map, x - 1, y);
 		flood_fill_without_exit(map, x + 1, y);
 	}
+}
+
+int	check_path(t_map *map)
+{
+	size_t	i;
+
+	if (find_player(map) == 0 || find_exit(map) == 0)
+		return (0);
+	map->map_copy[map->exit_y][map->exit_x] = '1';
+	flood_fill_without_exit(map, map->player_x, map->player_y);
+	if (check_exit_and_collectibles(map) == 0)
+		return (0);
+	map->map_copy[map->exit_y][map->exit_x] = 'E';
+	flood_fill(map, map->player_x, map->player_y);
+	if (check_exit_and_collectibles(map) == 0)
+		return (0);
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->map_copy[i]);
+		i++;
+	}
+	free(map->map_copy);
+	return (1);
 }
