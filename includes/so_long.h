@@ -6,14 +6,12 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:00:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/09 20:57:52 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/09 21:27:10 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../mlx/mlx.h"
-#include <X11/Xlib.h>
-#include <X11/keysym.h>
 #include <fcntl.h>
 
 typedef struct s_map
