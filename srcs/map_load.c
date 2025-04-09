@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:27:35 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/09 21:22:17 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/09 21:30:15 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	validate_map(char *filename, t_map *map)
 	return (1);
 }
 
-// +1 pour le \0
 static int	store_map_line(char *line, t_map *map, size_t i)
 {
 	size_t	j;

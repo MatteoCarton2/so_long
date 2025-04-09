@@ -6,7 +6,7 @@
 /*   By: mcarton <mcarton@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:37:00 by mcarton           #+#    #+#             */
-/*   Updated: 2025/04/09 21:02:37 by mcarton          ###   ########.fr       */
+/*   Updated: 2025/04/09 21:31:54 by mcarton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	check_exit_and_collectibles(t_map *map)
 	return (1);
 }
 
-/* ordre = haut, bas, gauche, droite */
 static void	flood_fill(t_map *map, size_t x, size_t y)
 {
 	if (x < map->width && y < map->height)
